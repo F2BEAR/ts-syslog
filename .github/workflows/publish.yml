@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - name: version
-        run: npm version ${{github.event.release.tag_name}} --no-git-tag-version
       - name: publish
         run: npm publish --access public --tag latest
         env:
