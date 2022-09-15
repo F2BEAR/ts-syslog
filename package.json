@@ -1,20 +1,55 @@
 {
-	"name": "syslog-server",
-	"version": "1.0.1",
-	"description": "NodeJS Syslog Server",
-	"main": "index.js",
+	"name": "ts-syslog",
+	"version": "1.0.0",
+	"description": "Fully typed NodeJS Syslog Server",
+	"main": "lib/index.js",
+	"module": "lib/index.mjs",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"build:dev": "rollup -c -w",
+		"build:prod": "set NODE_ENV=production&& rollup -c",
+		"commit": "cz",
+		"release": "semantic-release"
+	},
 	"author": {
-		"name": "Luiz Guilherme Thess",
-		"email": "guithess@gmail.com"
+		"name": "Facundo Carbonel",
+		"email": "contacto@facu.dev",
+		"url": "https://facu.dev/"
 	},
 	"keywords": [
-        "syslog",
-        "syslog-server"
-    ],
-	"homepage": "https://github.com/guithess/syslog-server#readme",
+		"syslog",
+		"syslog-server",
+		"typescript",
+		"NodeJS",
+		"ts-syslog"
+	],
+	"homepage": "https://github.com/F2BEAR/ts-syslog#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/guithess/syslog-server.git"
+		"url": "https://github.com/F2BEAR/ts-syslog"
 	},
-	"license": "MIT"
+	"bugs": {
+		"url": "https://github.com/F2BEAR/ts-syslog/issues"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^8.5.0",
+		"@types/node": "^18.7.18",
+		"commitizen": "^4.2.5",
+		"cz-conventional-changelog": "^3.3.0",
+		"rollup": "^2.79.0",
+		"rollup-plugin-cleanup": "^3.2.1",
+		"rollup-plugin-license": "^2.8.1",
+		"rollup-plugin-terser": "^7.0.2",
+		"semantic-release": "^19.0.5",
+		"terser": "^5.15.0",
+		"ts-node": "^10.9.1",
+		"tslib": "^2.4.0",
+		"typescript": "^4.8.3"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
 }

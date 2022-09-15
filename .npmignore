@@ -1,0 +1,12 @@
+/examples
+/src
+/.github
+/dist
+rollup.config.js
+tsconfig.json
+.prettierrc
+.releaserc
+.gitignore
+*.tgz
+*.zip
+*.tar.gz

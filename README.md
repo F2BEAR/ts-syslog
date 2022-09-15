@@ -1,57 +1,88 @@
-# SyslogServer
+# TS-Syslog
 
-NodeJS Syslog Server.
+![npm](https://img.shields.io/npm/v/ts-syslog)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/f2bear/ts-syslog/release)
+![npm bundle size](https://img.shields.io/bundlephobia/min/ts-syslog)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
-### Quickstart
+Fully typed NodeJS Syslog Server for ESM, CJS and Typescript.
 
-###### Installation
+## Quick Start
+
+##### Installation
 ```shell
-$ npm install syslog-server
+$ npm install ts-syslog
 ```
 
-###### Usage
+##### Usage
+
 ```javascript
-const SyslogServer = require("syslog-server");
+import SyslogServer from "ts-syslog";
 const server = new SyslogServer();
 
 server.on("message", (value) => {
     console.log(value.date);     // the date/time the message was received
-    console.log(value.host);     // the IP address of the host that sent the message
-    console.log(value.protocol); // the version of the IP protocol ("IPv4" or "IPv6")
     console.log(value.message);  // the syslog message
 });
 
-server.start();
+server.on("error", (err: SyslogError) => {
+    console.error(err.message)
+})
+
+server.listen({port:514}, () => {
+    console.log("Syslog listening on port 514")
+});
 ```
 
-### Functions
+## Functions
 
-###### .start([options], [callback])
+### listen([options], [callback])
 
-- **options** <Object> - Optional - The options passed to the server. Supports the following properties:
-    - port [Number] - Optional - Defaults to 514.
-    - address [String] - Optional - Defaults to "0.0.0.0".
-    - exclusive [Boolean] - Optional - Defaults to true.
+- **options** [Object] - The options passed to the server. Supports the following properties:
+    + port [Number] - The UDP port which will be used to listen.
+    + address [String] - Optional - The address which will be used - Defaults to `"0.0.0.0"`.
+- **callback** [Function] - Optional - Callback function called once the server starts.
 
-    For more informatio on the options object, check NodeJS oficial [API documentation](https://nodejs.org/api/dgram.html#dgram_socket_bind_options_callback).
+> **Note**
+>
+>For more information on the options object, check NodeJS official [API documentation](https://nodejs.org/api/dgram.html#dgram_socket_bind_options_callback).
 
-- **callback** [Function] - Optional - Callback function called once the server starts, receives an error object as argument should it fail.
+### close([callback])
 
-The start function returns a Promise.
+- **callback** [Function] - Optional - Callback function called once the server socket is closed.
 
-###### .stop([callback])
+### isRunning()
 
-- **callback** [Function] - Optional - Callback function called once the server socket is closed, receives an error object as argument should it fail.
+The isRunning function is a synchronous function that returns a Boolean value indicating if the server is ready to receive syslog messages or not.
 
-The stop function returns a Promise.
+> **Note**
+>
+> - Both the start and close functions return Promises.
 
-###### .isRunning()
+#### Callbacks
 
-The isRunning function is a synchronous function that returns a boolean value, if the server is ready to receive syslog messages or not.
+Both the `listening()` and `close()` functions callbacks are expected to only have the optional parameter which can be or error or null as, for example:
 
-### Events
+```javascript
+// this is correct
+server.close(() => {/** your code **/}) 
 
-- **start** - fired once the server is ready to receive syslog messages
-- **stop** - fired once the server is shutdown
-- **error** - fired whenever an error occur, an error object is passed to the handler function
-- **message** - fired once the server receives a syslog message
+// this is also correct
+server.close((err) => {/** your code **/})
+```
+
+## Events
+
+- **start** - Fired once the server is ready to receive syslog messages.
+- **stop** - Fired once the server is shutdown.
+- **error** - Fired whenever an error occur, an error object is passed to the handler function.
+- **message** - Fired once the server receives a syslog message.
+
+## Types
+
+- **SyslogOptions** - Contains the type definition for the parameter `options` from the `listen(options, callback)` function
+- **SyslogMessage** - Type definition for the message sent on the `message` event
+- **SyslogError** - The type definition for the errors returned by the `error` event
+
+> You can check the examples at `./examples`

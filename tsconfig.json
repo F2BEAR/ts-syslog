@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"lib": ["ESNext"],
+		"moduleResolution": "node",
+		"types": ["node"],
+		"declaration": true,
+		"removeComments": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"resolveJsonModule": true,
+		"rootDir": "./src",
+		"outDir": "./lib",
+		"skipLibCheck": true,
+	},
+	"exclude": ["./examples/*.ts", "./lib"]
+}
