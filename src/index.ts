@@ -31,7 +31,7 @@ export default class SyslogServer extends EventEmitter {
 
 	listen(
 		options: SyslofOptions,
-		cb: (error: SyslogError | null) => void ,
+		cb?: (error: SyslogError | null) => void ,
 	) {
 		return new Promise((resolve, reject) => {
 			if (!options.address) {

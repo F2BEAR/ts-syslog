@@ -12,11 +12,7 @@ server.on('error', (err) => {
     console.error(err)
 })
 
-server.start(() => {
-    console.log('si')
-});
-
-server.listen((err, d) => {
+server.listen({port:514},(err, d) => {
     if (err) console.error(err.message)
 });
 

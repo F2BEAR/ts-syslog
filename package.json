@@ -2,9 +2,12 @@
 	"name": "ts-syslog",
 	"version": "1.0.0",
 	"description": "Fully typed NodeJS Syslog Server",
-	"main": "lib/index.js",
-	"module": "lib/index.mjs",
-	"types": "lib/index.d.ts",
+	"main": "./lib/index.js",
+	"exports": {
+		"import": "./lib/index.mjs",
+		"require": "./lib/index.js"
+	},
+	"types": "./lib/index.d.ts",
 	"scripts": {
 		"build:dev": "rollup -c -w",
 		"build:prod": "set NODE_ENV=production&& rollup -c",

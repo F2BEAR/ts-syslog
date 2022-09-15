@@ -12,7 +12,7 @@ server.on('error', (err) => {
     console.error(err)
 })
 
-server.listen();
+server.listen({port:514});
 
 setTimeout(() => {
     server.close(() => {
