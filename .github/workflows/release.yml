@@ -25,3 +25,9 @@ jobs:
         run: npm run release
         env:
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+      - name: version
+        run: npm version ${{github.event.release.tag_name}} --no-git-tag-version
+      - name: publish
+        run: npm publish --access public --tag latest
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
