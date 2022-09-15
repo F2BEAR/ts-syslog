@@ -11,6 +11,10 @@
 		"commit": "cz",
 		"release": "semantic-release"
 	},
+	"publishConfig": {
+		"access": "public",
+		"tag": "latest"
+	},
 	"author": {
 		"name": "Facundo Carbonel",
 		"email": "contacto@facu.dev",
