@@ -15,7 +15,7 @@ export type SyslogError = {
 	message: string;
 };
 
-export type SyslofOptions = {
+export type SyslogOptions = {
 	port: number,
 	address?: string
 }
@@ -30,7 +30,7 @@ export default class SyslogServer extends EventEmitter {
 	}
 
 	listen(
-		options: SyslofOptions,
+		options: SyslogOptions,
 		cb?: (error: SyslogError | null) => void ,
 	) {
 		return new Promise((resolve, reject) => {
